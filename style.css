@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: system-ui, sans-serif;
+  }
+  
+  .hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 4rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1.2s ease;
+  }
+  
+  .title.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
