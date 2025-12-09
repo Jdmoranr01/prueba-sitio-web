@@ -24,6 +24,12 @@ img {
         background: #ffffff;
         color: #111;
     }
+
+    .feature-card,
+    .catalogo-image img,
+    .screen {
+        background: #f4f4f4;
+    }
 }
 
 /* =================== SECCIONES =================== */
@@ -94,14 +100,6 @@ img {
     padding: 25px;
     background: #1a1a1a;
     border-radius: 15px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 0.6s ease;
-}
-
-.feature-card.show {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* =================== CATÁLOGO =================== */
@@ -152,14 +150,6 @@ img {
 
 .screen {
     border-radius: 15px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 0.6s ease;
-}
-
-.screen.show {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* =================== RESALTADO FINAL =================== */
@@ -178,4 +168,37 @@ footer {
     padding: 40px 0;
     font-size: 0.9rem;
     opacity: 0.6;
+}
+
+/* =================== ANIMACIÓN GENERAL (REVEAL) =================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-image img {
+        width: 260px;
+    }
+
+    .catalogo {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .catalogo-image img {
+        width: 300px;
+    }
 }
