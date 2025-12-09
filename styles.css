@@ -8,7 +8,7 @@
 body {
     background: #0d0d0d; /* Fondo oscuro por defecto */
     color: #fff;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
     transition: background 0.3s, color 0.3s;
 }
