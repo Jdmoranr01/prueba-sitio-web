@@ -6,7 +6,7 @@
 }
 
 body {
-    background: #0d0d0d;
+    background: #0d0d0d; /* Fondo oscuro por defecto */
     color: #fff;
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -16,30 +16,6 @@ body {
 img {
     max-width: 100%;
     display: block;
-}
-
-/* =================== MODO OSCURO / CLARO =================== */
-@media (prefers-color-scheme: light) {
-    body {
-        background: #ffffff;
-        color: #111; /* Texto oscuro */
-    }
-
-    /* HACEMOS LAS TARJETAS CLARAS y les añadimos una sombra para que 
-       se separen del fondo blanco del body. */
-    .feature-card {
-        background: #ffffff;
-        border: 1px solid #ddd; /* Borde sutil */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra para elevar la tarjeta */
-        color: #111; /* Aseguramos texto oscuro */
-    }
-
-    /* Aseguramos que las imágenes de catálogo y capturas tengan un fondo claro */
-    .catalogo-image img,
-    .screen {
-        background: #f4f4f4;
-        box-shadow: none; /* Quitamos sombras oscuras que no se ven bien en modo claro */
-    }
 }
 
 /* =================== SECCIONES =================== */
@@ -52,9 +28,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* CAMBIO: Usamos vh (Viewpor Height) para asegurar una separación masiva 
-    que ocupe un gran porcentaje de la pantalla. */
-    padding: 15vh 8% 20vh 8%; /* 15% de la pantalla arriba, 20% abajo */
+    /* CORRECCIÓN: Espaciado adaptable (15% arriba, 20% abajo) */
+    padding: 15vh 8% 20vh 8%;
     gap: 40px;
 }
 
@@ -85,6 +60,8 @@ img {
     color: #fff;
     text-decoration: none;
     margin-right: 15px;
+    /* Transición suave para hover */
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-outline {
@@ -93,6 +70,20 @@ img {
     border-radius: 10px;
     color: #e05b2b;
     text-decoration: none;
+    /* Transición suave para hover */
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* EFECTOS HOVER (NUEVO) */
+.btn:hover {
+    background: #b84a22;
+    transform: translateY(-2px);
+}
+
+.btn-outline:hover {
+    background: #e05b2b;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(224, 91, 43, 0.4);
 }
 
 /* =================== CARACTERÍSTICAS =================== */
@@ -110,7 +101,7 @@ img {
 
 .feature-card {
     padding: 25px;
-    background: #1a1a1a;
+    background: #1a1a1a; /* Fondo oscuro tarjeta por defecto */
     border-radius: 15px;
 }
 
@@ -194,86 +185,102 @@ footer {
     transform: translateY(0);
 }
 
-/* =================== RESPONSIVE =================== */
+/* =================== RESPONSIVE (MÓVIL) =================== */
 @media (max-width: 900px) {
-
-    /* 1. SECCIONES: Reducir padding vertical general en móvil/tablet */
+    /* Reducir padding vertical general */
     .section {
-        padding: 60px 5%; /* Menos espacio vertical, menos margen lateral */
+        padding: 60px 5%;
     }
     
-    /* 2. HERO: Ajustes de apilamiento, centrado y reducción de padding */
+    /* Hero adaptable a móvil */
     .hero {
         flex-direction: column-reverse;
         text-align: center;
-        /* Reducimos el padding adaptativo para que no ocupe demasiado en pantallas pequeñas */
-        padding: 10vh 5%; 
+        padding: 10vh 5%; /* Menos altura en móvil */
+        gap: 30px;
     }
 
-    /* 3. HERO: Títulos más pequeños para mejor lectura en móvil */
     .hero-content h1 {
-        font-size: 2.5rem; /* Reducido de 3.2rem */
+        font-size: 2.5rem;
         margin-top: 20px;
     }
     
-    /* 4. HERO: Centrar los botones y permitir que se apilen */
+    /* Centrar botones y permitir saltos de línea */
     .hero-buttons {
-        display: flex; 
-        justify-content: center; 
-        flex-wrap: wrap; 
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px; /* Espacio entre botones */
     }
 
-    /* Ajuste para el espaciado entre botones en móvil */
-    .btn {
-        margin-right: 10px;
-        margin-bottom: 15px; /* Añade espacio si los botones se apilan */
+    .btn, .btn-outline {
+        margin-right: 0; /* Quitamos el margen derecho fijo */
+        width: 100%; /* Botones anchos en móvil se ven mejor, opcional */
+        max-width: 300px;
     }
-    
+
     .hero-image img {
         width: 260px;
+        margin: 0 auto;
     }
 
-    /* 5. CATÁLOGO: Ajustes de apilamiento */
     .catalogo {
         flex-direction: column;
         text-align: center;
     }
 
     .catalogo-image img {
-        width: 300px;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
     }
     
-    /* 6. TITULARES GENERALES: Reducir tamaño de subtítulos */
     .features h2, 
     .screenshots h2, 
     .community-highlight h2 {
-        font-size: 1.8rem; 
+        font-size: 1.8rem;
     }
     
-    /* 7. STATS: Asegurar que la lista de stats se centre */
     .catalogo-stats {
-        padding-left: 0; 
+        padding-left: 0;
         text-align: center;
     }
 }
 
-/* =================== HOVER EFFECTS =================== */
+/* =================== MODO OSCURO / CLARO (IMPORTANTE: AL FINAL) =================== */
+/* Al estar al final, sobrescribe los colores oscuros de arriba */
+@media (prefers-color-scheme: light) {
+    body {
+        background: #ffffff;
+        color: #111; /* Texto general oscuro */
+    }
 
-/* Animación de entrada suave para todos los botones */
-.btn,
-.btn-outline {
-    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
+    /* Solución tarjetas: Fondo claro y texto oscuro */
+    .feature-card {
+        background: #f9f9f9; 
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        color: #111; /* Texto forzado a oscuro */
+    }
+    
+    .feature-card h3,
+    .feature-card p {
+        color: #111; /* Asegurar contraste */
+    }
 
-/* Efecto Hover para el botón principal (Descargar App) */
-.btn:hover {
-    background: #b84a22; /* Un tono un poco más oscuro */
-    transform: translateY(-1px); /* Sutil levantamiento */
-}
-
-/* Efecto Hover para el botón de contorno (Ver características) */
-.btn-outline:hover {
-    background: #e05b2b; /* Rellenar el fondo con el color principal */
-    color: #fff; /* Cambiar el color del texto a blanco */
-    box-shadow: 0 4px 10px rgba(224, 91, 43, 0.4); /* Añadir una sombra sutil */
+    .catalogo-image img,
+    .screen {
+        background: #f4f4f4;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Asegurar que los botones de borde se vean bien */
+    .btn-outline {
+        color: #e05b2b;
+        border-color: #e05b2b;
+    }
+    
+    .btn-outline:hover {
+        color: #fff;
+    }
 }
