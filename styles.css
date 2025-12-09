@@ -91,22 +91,101 @@ img {
 }
 
 /* =================== CARACTERÍSTICAS =================== */
-.features h2 {
+/* =================== TARJETAS INTERACTIVAS =================== */
+
+.feature-card.interactive {
+    position: relative; /* Necesario para ubicar la imagen dentro */
+    height: 300px; /* Altura fija para que todas sean iguales */
+    overflow: hidden; /* Corta la imagen si es muy grande */
+    display: flex;
+    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center; /* Centra horizontalmente */
     text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 40px;
+    cursor: pointer;
+    background: #1a1a1a; /* Fondo base si no hay imagen */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.features-grid {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+/* LA IMAGEN DE FONDO (Oculta al inicio) */
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra todo sin deformarse */
+    opacity: 0; /* Invisible por defecto */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1;
 }
 
-.feature-card {
-    padding: 25px;
-    background: #1a1a1a; /* Fondo oscuro tarjeta por defecto */
-    border-radius: 15px;
+/* EL CONTENIDO (Texto) */
+.card-content {
+    position: relative;
+    z-index: 2; /* Encima de la imagen */
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.card-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombra para leerse sobre fotos */
+}
+
+/* DESCRIPCIÓN (Oculta al inicio) */
+.card-content p {
+    max-height: 0; /* Altura 0 para ocultar */
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(20px); /* Ligeramente abajo */
+    transition: all 0.4s ease;
+    font-size: 1rem;
+    color: #f0f0f0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* =================== EFECTO HOVER (AL PASAR EL MOUSE) =================== */
+
+.feature-card.interactive:hover {
+    transform: translateY(-5px); /* La tarjeta sube un poco */
+    box-shadow: 0 10px 30px rgba(224, 91, 43, 0.15); /* Resplandor naranja sutil */
+}
+
+/* Mostrar imagen */
+.feature-card.interactive:hover .card-bg {
+    opacity: 0.3; /* Se ve la imagen pero oscurecida para leer el texto */
+    transform: scale(1.1); /* Zoom suave a la imagen */
+}
+
+/* Mostrar texto */
+.feature-card.interactive:hover .card-content p {
+    max-height: 150px; /* Se abre espacio para el texto */
+    opacity: 1;
+    transform: translateY(0); /* Sube a su posición original */
+}
+
+/* Ajuste en MODO CLARO para estas tarjetas específicas */
+@media (prefers-color-scheme: light) {
+    .feature-card.interactive {
+        background: #f0f0f0;
+    }
+    .feature-card.interactive h3 {
+        color: #111;
+    }
+    .card-content p {
+        color: #111;
+        font-weight: 500;
+        text-shadow: none; /* En modo claro, sin sombra, o ajustar según imagen */
+    }
+    
+    /* Cuando hay hover y sale la imagen oscura, volvemos el texto blanco para leerlo */
+    .feature-card.interactive:hover h3,
+    .feature-card.interactive:hover p {
+        color: #fff;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+    }
 }
 
 /* =================== CATÁLOGO =================== */
