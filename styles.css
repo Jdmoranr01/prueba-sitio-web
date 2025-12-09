@@ -1,3 +1,6 @@
+/* TIPOGRAFÍA */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
 /* Reset suave */
 * {
     margin: 0;
@@ -6,18 +9,16 @@
     font-family: 'Inter', sans-serif;
 }
 
+/* Colores */
+:root {
+    --accent: #C75E35;
+}
+
+/* MODO OSCURO (por defecto) */
 body {
     background: #0d0d0d;
     color: white;
     overflow-x: hidden;
-}
-
-/* Tipografía moderna */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
-
-/* Colores */
-:root {
-    --accent: #C75E35;
 }
 
 /* HERO */
@@ -238,5 +239,43 @@ footer {
 
     .hero-image img {
         width: 200px;
+    }
+}
+
+/* ================================ */
+/* MODO CLARO AUTOMÁTICO */
+/* ================================ */
+
+@media (prefers-color-scheme: light) {
+    body {
+        background: #ffffff;
+        color: #111;
+    }
+
+    .features {
+        background: #f2f2f2;
+    }
+
+    .feature-card {
+        background: #ffffff;
+        border: 1px solid #ddd;
+    }
+
+    .community {
+        background: #fafafa;
+    }
+
+    .btn {
+        background: var(--accent);
+        color: white;
+    }
+
+    .btn-outline {
+        color: var(--accent);
+        border-color: var(--accent);
+    }
+
+    footer {
+        opacity: 0.7;
     }
 }
