@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prueba pagina web</title>
+    <title>Outcrop360 – Landing</title>
 
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-    <!-- HERO -->
+    <!-- =================== HERO =================== -->
     <header class="hero">
         <div class="hero-content">
             <h1>Tu trabajo de campo, redefinido.</h1>
@@ -18,60 +18,85 @@
 
             <div class="hero-buttons">
                 <a href="#" class="btn">Descargar App</a>
-                <a href="#" class="btn-outline">Ver características</a>
+                <a href="#caracteristicas" class="btn-outline">Ver características</a>
             </div>
         </div>
 
         <div class="hero-image">
-            <img src="assets/test imagen.png" alt="Mockup app" />
+            <!-- Cambiá esta imagen por la tuya -->
+            <img src="assets/mockup-phone.png" alt="Mockup app" />
         </div>
     </header>
 
-    <!-- BENEFICIOS -->
-    <section class="features">
+
+    <!-- =================== CARACTERÍSTICAS =================== -->
+    <section id="caracteristicas" class="features section">
         <h2>Diseñada para el trabajo real en terreno</h2>
 
         <div class="features-grid">
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <h3>Registra observaciones</h3>
                 <p>Crea descripciones claras y estructuradas de cada punto de interés en campo.</p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <h3>Fotografías con metadatos</h3>
                 <p>Toma evidencia visual con información exacta del contexto.</p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <h3>Funciona sin conexión</h3>
                 <p>Continúa trabajando incluso en zonas remotas sin señal.</p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <h3>Mapas integrados</h3>
                 <p>Ubica tus observaciones y rutas fácilmente en una interfaz limpia.</p>
             </div>
         </div>
     </section>
 
-    <!-- CAPTURAS -->
-    <section class="screenshots">
-        <h2>Una herramienta moderna para geólogos modernos</h2>
 
-        <div class="screens-grid">
-            <img src="img/screen1.png" alt="Captura 1" class="screen">
-            <img src="img/screen2.png" alt="Captura 2" class="screen">
-            <img src="img/screen3.png" alt="Captura 3" class="screen">
+    <!-- =================== CATÁLOGO / COMUNIDAD =================== -->
+    <section class="catalogo section reveal">
+        <div class="catalogo-text">
+            <h2>Un catálogo que crece con la comunidad</h2>
+            <p>La Biblioteca de Recursos se expande con nuevos aportes, colecciones y herramientas creadas por geólogos de todo el mundo. Outcrop360 mejora constantemente gracias a su comunidad.</p>
+
+            <ul class="catalogo-stats">
+                <li><strong>+2400</strong> recursos</li>
+                <li><strong>+6</strong> colecciones</li>
+                <li><strong>+8</strong> colaboradores activos</li>
+            </ul>
+        </div>
+
+        <div class="catalogo-image">
+            <!-- Aquí va la captura que me pasaste -->
+            <img src="assets/screen-catalogo.png" alt="Biblioteca de Recursos">
         </div>
     </section>
 
-    <!-- COMUNIDAD -->
-    <section class="community">
-        <h2>+2450 aportes de la comunidad</h2>
-        <p>Outcrop360 crece gracias a geólogos de todo el mundo que documentan, comparten y aprenden juntos.</p>
+
+    <!-- =================== CAPTURAS =================== -->
+    <section class="screenshots section">
+        <h2>Una herramienta moderna para geólogos modernos</h2>
+
+        <div class="screens-grid">
+            <img src="assets/screen1.png" alt="Captura 1" class="screen reveal">
+            <img src="assets/screen2.png" alt="Captura 2" class="screen reveal">
+            <img src="assets/screen3.png" alt="Captura 3" class="screen reveal">
+        </div>
     </section>
 
-    <!-- FOOTER -->
+
+    <!-- =================== RESALTADO FINAL =================== -->
+    <section class="community-highlight section">
+        <h2>Construida para geólogos, impulsada por geólogos</h2>
+        <p>Outcrop360 evoluciona gracias a miles de profesionales que aportan su experiencia desde distintas partes del mundo.</p>
+    </section>
+
+
+    <!-- =================== FOOTER =================== -->
     <footer>
         <p>Proyecto.</p>
     </footer>
