@@ -77,14 +77,6 @@ body {
 
 .hero-image img {
     width: 360px;
-    animation: float 4s ease-in-out infinite;
-}
-
-/* Animación flotante */
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
 }
 
 /* FEATURES */
