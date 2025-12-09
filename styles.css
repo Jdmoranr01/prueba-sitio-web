@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /* =================== RESET =================== */
 * {
     margin: 0;
@@ -283,4 +287,14 @@ footer {
     .btn-outline:hover {
         color: #fff;
     }
+}
+
+    /* EFECTO DE TEXTO GRADIENTE */
+.text-gradient {
+    /* De blanco a tu color naranja (#e05b2b) */
+    background: linear-gradient(90deg, #ffffff 30%, #e05b2b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block; /* Mejora la renderización */
 }
