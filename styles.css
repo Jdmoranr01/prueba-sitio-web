@@ -355,6 +355,15 @@ footer {
         background: #ffffff;
         color: #111;
     }
+
+    /* --- CORRECCIÓN DEL TÍTULO GRADIENTE --- */
+    .text-gradient {
+        /* En lugar de blanco, usamos negro (#111) hacia naranja */
+        background: linear-gradient(90deg, #111111 30%, #e05b2b 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
     
     /* En modo claro, las tarjetas se quedan NARANJAS para destacar */
     .feature-card {
