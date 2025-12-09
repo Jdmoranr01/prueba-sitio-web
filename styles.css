@@ -23,6 +23,101 @@ img {
     padding: 90px 8%;
 }
 
+/* =================== NAVBAR =================== */
+.navbar {
+    position: fixed; /* Se queda fija arriba */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que esté siempre encima de todo */
+    background: rgba(13, 13, 13, 0.85); /* Oscuro semitransparente */
+    backdrop-filter: blur(10px); /* Efecto vidrio borroso (muy moderno) */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Línea sutil divisoria */
+    padding: 15px 0;
+    transition: background 0.3s;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%; /* Ancho del contenido */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilo del Logo */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: #e05b2b; /* El naranja de la marca */
+}
+
+/* Enlaces del centro */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: opacity 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    color: #e05b2b;
+}
+
+/* Botón pequeño del navbar */
+.btn-nav {
+    padding: 8px 20px;
+    background: #e05b2b;
+    border-radius: 20px; /* Más redondeado estilo app */
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.btn-nav:hover {
+    background: #b84a22;
+    transform: scale(1.05);
+}
+
+/* AJUSTES NAVBAR EN MODO CLARO */
+@media (prefers-color-scheme: light) {
+    .navbar {
+        background: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .logo { color: #111; }
+    .nav-links a { color: #111; }
+    .nav-links a:hover { color: #e05b2b; }
+}
+
+/* RESPONSIVE NAVBAR: Ocultar enlaces en móviles para no saturar */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Ocultamos los links de texto en celular */
+    }
+    
+    .navbar-container {
+        width: 90%; /* Más margen en móviles */
+    }
+}
+
 /* =================== HERO =================== */
 .hero {
     display: flex;
