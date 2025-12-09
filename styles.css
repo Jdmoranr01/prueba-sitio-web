@@ -12,7 +12,7 @@ html {
 body {
     background: #0d0d0d;
     color: #fff;
-    /* Tipografía moderna (asegúrate de tener el link en el HTML) */
+    /* Asegúrate de tener el link de Google Fonts en el HTML */
     font-family: 'Inter', sans-serif; 
     line-height: 1.6;
     transition: background 0.3s, color 0.3s;
@@ -54,7 +54,7 @@ img {
 .hero-content h1 {
     font-size: 3.2rem;
     margin-bottom: 20px;
-    font-weight: 800; /* Letra bien gruesa */
+    font-weight: 800;
     letter-spacing: -1px;
 }
 
@@ -67,7 +67,8 @@ img {
 
 .hero-image img {
     width: 400px;
-    filter: drop-shadow(0 0 30px rgba(224, 91, 43, 0.2)); /* Resplandor sutil */
+    /* Sombra naranja suave detrás del teléfono */
+    filter: drop-shadow(0 0 30px rgba(224, 91, 43, 0.2)); 
 }
 
 /* BOTONES */
@@ -93,7 +94,7 @@ img {
 }
 
 .btn:hover {
-    background: #b84a22;
+    background: #b84a22; /* Un poco más oscuro */
     transform: translateY(-2px);
 }
 
@@ -103,7 +104,7 @@ img {
     box-shadow: 0 4px 15px rgba(224, 91, 43, 0.4);
 }
 
-/* =================== CARACTERÍSTICAS (TARJETAS INTERACTIVAS) =================== */
+/* =================== CARACTERÍSTICAS (TARJETAS NARANJAS INTERACTIVAS) =================== */
 .features h2 {
     text-align: center;
     font-size: 2.2rem;
@@ -113,108 +114,73 @@ img {
 
 .features-grid {
     display: grid;
-    /* Asegura que estén en fila horizontal y bajen si no caben */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* Mantiene las tarjetas en fila horizontal */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     width: 100%;
 }
 
-/* TARJETA BASE */
-.feature-card.interactive {
-    position: relative;
-    height: 350px; /* Altura fija para uniformidad */
+.feature-card {
+    background: #e05b2b; /* Fondo Naranja Solido */
+    height: 300px; /* Altura fija para uniformidad */
+    border-radius: 15px;
+    padding: 30px;
+    
+    /* Centrado del contenido */
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    overflow: hidden; /* Recorta lo que sobresalga */
-    background: #1a1a1a;
-    border-radius: 15px;
-    border: 1px solid #333;
+    
+    /* Configuración de interacción */
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden; /* Clave para ocultar el texto que se sale */
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(224, 91, 43, 0.2);
 }
 
-/* IMAGEN DE FONDO (Oculta al inicio) */
-.card-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    z-index: 0;
-    transition: opacity 0.4s ease, transform 0.6s ease;
-}
-
-/* CAPA OSCURA (Para leer texto sobre la imagen) */
-.feature-card.interactive::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.4));
-    opacity: 0;
-    z-index: 1;
-    transition: opacity 0.4s ease;
-}
-
-/* CONTENIDO (Texto) */
-.card-content {
-    position: relative;
-    z-index: 2;
-    padding: 25px;
-    width: 100%;
-    transform: translateY(20px);
-    transition: transform 0.4s ease;
-}
-
-.card-content h3 {
-    font-size: 1.5rem;
+/* TÍTULO DE LA TARJETA */
+.feature-card h3 {
     color: #fff;
-    margin-bottom: 0;
-    transition: margin-bottom 0.4s ease;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    transition: transform 0.4s ease; /* Se mueve suavemente */
 }
 
-.card-content p {
-    font-size: 0.95rem;
-    color: #ddd;
+/* TEXTO DE LA TARJETA (Oculto inicialmente) */
+.feature-card p {
+    color: #fff;
+    font-size: 1rem;
     line-height: 1.5;
-    max-height: 0; /* Oculto por defecto */
+    opacity: 0.95;
+    
+    /* Lógica de ocultamiento */
+    max-height: 0;
     opacity: 0;
-    overflow: hidden;
     margin-top: 0;
+    transform: translateY(20px); /* Empieza desplazado abajo */
     transition: all 0.5s ease;
 }
 
-/* --- ANIMACIÓN HOVER (PC) --- */
-.feature-card.interactive:hover {
-    transform: translateY(-8px);
-    border-color: #e05b2b; /* Borde naranja al seleccionar */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+/* --- INTERACCIÓN HOVER (PC) --- */
+
+.feature-card:hover {
+    transform: translateY(-8px); /* La tarjeta sube */
+    background: #d64d1e; /* Naranja un poco más intenso */
+    box-shadow: 0 15px 40px rgba(224, 91, 43, 0.5);
 }
 
-.feature-card.interactive:hover .card-bg {
-    opacity: 1;
-    transform: scale(1.1); /* Zoom suave */
+.feature-card:hover h3 {
+    transform: translateY(-10px); /* El título sube para dar espacio */
 }
 
-.feature-card.interactive:hover::after {
-    opacity: 1; /* Aparece la capa oscura */
-}
-
-.feature-card.interactive:hover .card-content {
-    transform: translateY(0); /* Sube a posición central */
-}
-
-.feature-card.interactive:hover .card-content p {
+.feature-card:hover p {
     max-height: 200px; /* Se abre espacio para el texto */
     opacity: 1;
     margin-top: 15px;
+    transform: translateY(0); /* Sube a su sitio */
 }
 
 /* =================== CATÁLOGO =================== */
@@ -232,12 +198,13 @@ img {
 .catalogo-text h2 {
     font-size: 2.3rem;
     margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .catalogo-stats {
     margin-top: 20px;
     list-style: none;
-    border-left: 3px solid #e05b2b; /* Detalle visual */
+    border-left: 3px solid #e05b2b;
     padding-left: 20px;
 }
 
@@ -258,6 +225,7 @@ img {
     text-align: center;
     font-size: 2.2rem;
     margin-bottom: 50px;
+    font-weight: 700;
 }
 
 .screens-grid {
@@ -353,28 +321,31 @@ footer {
         border-left: none;
         padding-left: 0;
     }
+    
+    .catalogo-image img {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
 
     /* ---- LÓGICA TARJETAS EN MÓVIL ---- */
-    /* En móvil se muestran siempre "activas" para leer sin tocar */
-    .feature-card.interactive {
+    /* En móvil, mostramos el texto siempre para no depender del click/hover */
+    .feature-card {
         height: auto; 
-        min-height: 280px;
+        min-height: 250px;
+        padding: 40px 25px;
     }
 
-    .feature-card.interactive .card-bg {
-        opacity: 0.3 !important; 
+    .feature-card h3 {
+        transform: translateY(0) !important;
+        margin-bottom: 15px;
     }
-    
-    .feature-card.interactive .card-content p {
+
+    .feature-card p {
         max-height: 300px !important;
         opacity: 1 !important;
-        margin-top: 10px;
-    }
-    
-    .feature-card.interactive h3,
-    .feature-card.interactive p {
-        /* Asegurar contraste en móvil */
-        text-shadow: 0 2px 5px rgba(0,0,0,1); 
+        margin-top: 0 !important;
+        transform: translateY(0) !important;
     }
 }
 
@@ -384,32 +355,20 @@ footer {
         background: #ffffff;
         color: #111;
     }
-
-    .feature-card.interactive {
-        background: #f4f4f4;
-        border-color: #ddd;
+    
+    /* En modo claro, las tarjetas se quedan NARANJAS para destacar */
+    .feature-card {
+        background: #e05b2b !important;
+        color: #fff !important;
+        box-shadow: 0 10px 30px rgba(224, 91, 43, 0.3);
     }
     
-    /* Cuando la tarjeta está cerrada (sin foto), el texto es negro */
-    .feature-card.interactive h3 {
-        color: #111; 
+    /* Textos dentro de la tarjeta forzados a blanco */
+    .feature-card h3, .feature-card p {
+        color: #fff !important;
     }
     
-    /* ALERTA: Cuando hay hover y sale la imagen oscura, 
-       forzamos el texto a blanco para que se lea sobre la foto */
-    .feature-card.interactive:hover h3,
-    .feature-card.interactive:hover p {
-        color: #fff;
-    }
-    
-    /* En móvil, como siempre se ve la imagen, texto blanco */
-    @media (max-width: 900px) {
-        .feature-card.interactive h3,
-        .feature-card.interactive p {
-            color: #fff !important;
-        }
-    }
-
+    /* Botones y Footer */
     .btn-outline {
         color: #e05b2b;
         border-color: #e05b2b;
