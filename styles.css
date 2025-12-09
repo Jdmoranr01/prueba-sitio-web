@@ -42,7 +42,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 120px 8%;
+    /* CAMBIO: Aumentado de 120px a 180px para mayor separación vertical */
+    padding: 180px 8%;
     gap: 40px;
 }
 
