@@ -22,13 +22,23 @@ img {
 @media (prefers-color-scheme: light) {
     body {
         background: #ffffff;
-        color: #111;
+        color: #111; /* Texto oscuro */
     }
 
-    .feature-card,
+    /* HACEMOS LAS TARJETAS CLARAS y les añadimos una sombra para que 
+       se separen del fondo blanco del body. */
+    .feature-card {
+        background: #ffffff;
+        border: 1px solid #ddd; /* Borde sutil */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra para elevar la tarjeta */
+        color: #111; /* Aseguramos texto oscuro */
+    }
+
+    /* Aseguramos que las imágenes de catálogo y capturas tengan un fondo claro */
     .catalogo-image img,
     .screen {
         background: #f4f4f4;
+        box-shadow: none; /* Quitamos sombras oscuras que no se ven bien en modo claro */
     }
 }
 
