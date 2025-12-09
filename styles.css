@@ -1,8 +1,8 @@
+/* =================== CONFIGURACIÓN GENERAL =================== */
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Desplazamiento suave al navegar */
 }
 
-/* =================== RESET =================== */
 * {
     margin: 0;
     padding: 0;
@@ -10,9 +10,10 @@ html {
 }
 
 body {
-    background: #0d0d0d; /* Fondo oscuro por defecto */
+    background: #0d0d0d;
     color: #fff;
-    font-family: 'Inter', sans-serif;
+    /* Tipografía moderna (asegúrate de tener el link en el HTML) */
+    font-family: 'Inter', sans-serif; 
     line-height: 1.6;
     transition: background 0.3s, color 0.3s;
 }
@@ -22,7 +23,16 @@ img {
     display: block;
 }
 
-/* =================== SECCIONES =================== */
+/* =================== UTILIDADES =================== */
+.text-gradient {
+    /* Efecto de texto degradado de blanco a naranja */
+    background: linear-gradient(90deg, #ffffff 40%, #e05b2b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
 .section {
     padding: 90px 8%;
 }
@@ -32,7 +42,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* CORRECCIÓN: Espaciado adaptable (15% arriba, 20% abajo) */
+    /* Espaciado adaptable a la altura de la pantalla */
     padding: 15vh 8% 20vh 8%;
     gap: 40px;
 }
@@ -44,16 +54,20 @@ img {
 .hero-content h1 {
     font-size: 3.2rem;
     margin-bottom: 20px;
+    font-weight: 800; /* Letra bien gruesa */
+    letter-spacing: -1px;
 }
 
 .hero-content p {
     font-size: 1.2rem;
     opacity: 0.9;
     margin-bottom: 30px;
+    max-width: 600px;
 }
 
 .hero-image img {
     width: 400px;
+    filter: drop-shadow(0 0 30px rgba(224, 91, 43, 0.2)); /* Resplandor sutil */
 }
 
 /* BOTONES */
@@ -64,7 +78,7 @@ img {
     color: #fff;
     text-decoration: none;
     margin-right: 15px;
-    /* Transición suave para hover */
+    font-weight: 600;
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -74,11 +88,10 @@ img {
     border-radius: 10px;
     color: #e05b2b;
     text-decoration: none;
-    /* Transición suave para hover */
+    font-weight: 600;
     transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* EFECTOS HOVER (NUEVO) */
 .btn:hover {
     background: #b84a22;
     transform: translateY(-2px);
@@ -87,105 +100,121 @@ img {
 .btn-outline:hover {
     background: #e05b2b;
     color: #fff;
-    box-shadow: 0 4px 10px rgba(224, 91, 43, 0.4);
+    box-shadow: 0 4px 15px rgba(224, 91, 43, 0.4);
 }
 
-/* =================== CARACTERÍSTICAS =================== */
-/* =================== TARJETAS INTERACTIVAS =================== */
-
-.feature-card.interactive {
-    position: relative; /* Necesario para ubicar la imagen dentro */
-    height: 300px; /* Altura fija para que todas sean iguales */
-    overflow: hidden; /* Corta la imagen si es muy grande */
-    display: flex;
-    align-items: center; /* Centra el contenido verticalmente */
-    justify-content: center; /* Centra horizontalmente */
+/* =================== CARACTERÍSTICAS (TARJETAS INTERACTIVAS) =================== */
+.features h2 {
     text-align: center;
-    cursor: pointer;
-    background: #1a1a1a; /* Fondo base si no hay imagen */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    font-weight: 700;
 }
 
-/* LA IMAGEN DE FONDO (Oculta al inicio) */
+.features-grid {
+    display: grid;
+    /* Asegura que estén en fila horizontal y bajen si no caben */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+/* TARJETA BASE */
+.feature-card.interactive {
+    position: relative;
+    height: 350px; /* Altura fija para uniformidad */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden; /* Recorta lo que sobresalga */
+    background: #1a1a1a;
+    border-radius: 15px;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* IMAGEN DE FONDO (Oculta al inicio) */
 .card-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra todo sin deformarse */
-    opacity: 0; /* Invisible por defecto */
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    z-index: 1;
+    object-fit: cover;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.4s ease, transform 0.6s ease;
 }
 
-/* EL CONTENIDO (Texto) */
+/* CAPA OSCURA (Para leer texto sobre la imagen) */
+.feature-card.interactive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.4));
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.4s ease;
+}
+
+/* CONTENIDO (Texto) */
 .card-content {
     position: relative;
-    z-index: 2; /* Encima de la imagen */
-    padding: 20px;
-    transition: transform 0.3s ease;
+    z-index: 2;
+    padding: 25px;
+    width: 100%;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
 }
 
 .card-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
     color: #fff;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombra para leerse sobre fotos */
+    margin-bottom: 0;
+    transition: margin-bottom 0.4s ease;
 }
 
-/* DESCRIPCIÓN (Oculta al inicio) */
 .card-content p {
-    max-height: 0; /* Altura 0 para ocultar */
+    font-size: 0.95rem;
+    color: #ddd;
+    line-height: 1.5;
+    max-height: 0; /* Oculto por defecto */
     opacity: 0;
     overflow: hidden;
-    transform: translateY(20px); /* Ligeramente abajo */
-    transition: all 0.4s ease;
-    font-size: 1rem;
-    color: #f0f0f0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    margin-top: 0;
+    transition: all 0.5s ease;
 }
 
-/* =================== EFECTO HOVER (AL PASAR EL MOUSE) =================== */
-
+/* --- ANIMACIÓN HOVER (PC) --- */
 .feature-card.interactive:hover {
-    transform: translateY(-5px); /* La tarjeta sube un poco */
-    box-shadow: 0 10px 30px rgba(224, 91, 43, 0.15); /* Resplandor naranja sutil */
+    transform: translateY(-8px);
+    border-color: #e05b2b; /* Borde naranja al seleccionar */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Mostrar imagen */
 .feature-card.interactive:hover .card-bg {
-    opacity: 0.3; /* Se ve la imagen pero oscurecida para leer el texto */
-    transform: scale(1.1); /* Zoom suave a la imagen */
-}
-
-/* Mostrar texto */
-.feature-card.interactive:hover .card-content p {
-    max-height: 150px; /* Se abre espacio para el texto */
     opacity: 1;
-    transform: translateY(0); /* Sube a su posición original */
+    transform: scale(1.1); /* Zoom suave */
 }
 
-/* Ajuste en MODO CLARO para estas tarjetas específicas */
-@media (prefers-color-scheme: light) {
-    .feature-card.interactive {
-        background: #f0f0f0;
-    }
-    .feature-card.interactive h3 {
-        color: #111;
-    }
-    .card-content p {
-        color: #111;
-        font-weight: 500;
-        text-shadow: none; /* En modo claro, sin sombra, o ajustar según imagen */
-    }
-    
-    /* Cuando hay hover y sale la imagen oscura, volvemos el texto blanco para leerlo */
-    .feature-card.interactive:hover h3,
-    .feature-card.interactive:hover p {
-        color: #fff;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-    }
+.feature-card.interactive:hover::after {
+    opacity: 1; /* Aparece la capa oscura */
+}
+
+.feature-card.interactive:hover .card-content {
+    transform: translateY(0); /* Sube a posición central */
+}
+
+.feature-card.interactive:hover .card-content p {
+    max-height: 200px; /* Se abre espacio para el texto */
+    opacity: 1;
+    margin-top: 15px;
 }
 
 /* =================== CATÁLOGO =================== */
@@ -208,39 +237,48 @@ img {
 .catalogo-stats {
     margin-top: 20px;
     list-style: none;
+    border-left: 3px solid #e05b2b; /* Detalle visual */
+    padding-left: 20px;
 }
 
 .catalogo-stats li {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-size: 1.1rem;
 }
 
 .catalogo-image img {
-    width: 350px;
+    width: 100%;
+    max-width: 450px;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 /* =================== CAPTURAS =================== */
 .screenshots h2 {
     text-align: center;
     font-size: 2.2rem;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .screens-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 30px;
 }
 
 .screen {
     border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.screen:hover {
+    transform: scale(1.02);
 }
 
 /* =================== RESALTADO FINAL =================== */
 .community-highlight {
     text-align: center;
+    padding-bottom: 120px;
 }
 
 .community-highlight h2 {
@@ -254,9 +292,10 @@ footer {
     padding: 40px 0;
     font-size: 0.9rem;
     opacity: 0.6;
+    border-top: 1px solid #222;
 }
 
-/* =================== ANIMACIÓN GENERAL (REVEAL) =================== */
+/* =================== ANIMACIÓN (REVEAL) =================== */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -268,42 +307,40 @@ footer {
     transform: translateY(0);
 }
 
-/* =================== RESPONSIVE (MÓVIL) =================== */
+/* =================== RESPONSIVE (MÓVIL/TABLET) =================== */
 @media (max-width: 900px) {
-    /* Reducir padding vertical general */
     .section {
-        padding: 60px 5%;
+        padding: 60px 6%;
     }
     
-    /* Hero adaptable a móvil */
+    /* Hero Vertical */
     .hero {
         flex-direction: column-reverse;
         text-align: center;
-        padding: 10vh 5%; /* Menos altura en móvil */
+        padding: 12vh 6%;
         gap: 30px;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.4rem;
         margin-top: 20px;
     }
     
-    /* Centrar botones y permitir saltos de línea */
     .hero-buttons {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 10px; /* Espacio entre botones */
+        gap: 15px;
     }
 
     .btn, .btn-outline {
-        margin-right: 0; /* Quitamos el margen derecho fijo */
-        width: 100%; /* Botones anchos en móvil se ven mejor, opcional */
+        margin-right: 0;
+        width: 100%;
         max-width: 300px;
     }
 
     .hero-image img {
-        width: 260px;
+        width: 280px;
         margin: 0 auto;
     }
 
@@ -311,53 +348,68 @@ footer {
         flex-direction: column;
         text-align: center;
     }
-
-    .catalogo-image img {
-        width: 100%;
-        max-width: 350px;
-        margin: 0 auto;
-    }
-    
-    .features h2, 
-    .screenshots h2, 
-    .community-highlight h2 {
-        font-size: 1.8rem;
-    }
     
     .catalogo-stats {
+        border-left: none;
         padding-left: 0;
-        text-align: center;
+    }
+
+    /* ---- LÓGICA TARJETAS EN MÓVIL ---- */
+    /* En móvil se muestran siempre "activas" para leer sin tocar */
+    .feature-card.interactive {
+        height: auto; 
+        min-height: 280px;
+    }
+
+    .feature-card.interactive .card-bg {
+        opacity: 0.3 !important; 
+    }
+    
+    .feature-card.interactive .card-content p {
+        max-height: 300px !important;
+        opacity: 1 !important;
+        margin-top: 10px;
+    }
+    
+    .feature-card.interactive h3,
+    .feature-card.interactive p {
+        /* Asegurar contraste en móvil */
+        text-shadow: 0 2px 5px rgba(0,0,0,1); 
     }
 }
 
-/* =================== MODO OSCURO / CLARO (IMPORTANTE: AL FINAL) =================== */
-/* Al estar al final, sobrescribe los colores oscuros de arriba */
+/* =================== MODO OSCURO / CLARO (AL FINAL) =================== */
 @media (prefers-color-scheme: light) {
     body {
         background: #ffffff;
-        color: #111; /* Texto general oscuro */
+        color: #111;
     }
 
-    /* Solución tarjetas: Fondo claro y texto oscuro */
-    .feature-card {
-        background: #f9f9f9; 
-        border: 1px solid #e0e0e0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        color: #111; /* Texto forzado a oscuro */
-    }
-    
-    .feature-card h3,
-    .feature-card p {
-        color: #111; /* Asegurar contraste */
-    }
-
-    .catalogo-image img,
-    .screen {
+    .feature-card.interactive {
         background: #f4f4f4;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-color: #ddd;
     }
     
-    /* Asegurar que los botones de borde se vean bien */
+    /* Cuando la tarjeta está cerrada (sin foto), el texto es negro */
+    .feature-card.interactive h3 {
+        color: #111; 
+    }
+    
+    /* ALERTA: Cuando hay hover y sale la imagen oscura, 
+       forzamos el texto a blanco para que se lea sobre la foto */
+    .feature-card.interactive:hover h3,
+    .feature-card.interactive:hover p {
+        color: #fff;
+    }
+    
+    /* En móvil, como siempre se ve la imagen, texto blanco */
+    @media (max-width: 900px) {
+        .feature-card.interactive h3,
+        .feature-card.interactive p {
+            color: #fff !important;
+        }
+    }
+
     .btn-outline {
         color: #e05b2b;
         border-color: #e05b2b;
@@ -366,14 +418,8 @@ footer {
     .btn-outline:hover {
         color: #fff;
     }
-}
-
-    /* EFECTO DE TEXTO GRADIENTE */
-.text-gradient {
-    /* De blanco a tu color naranja (#e05b2b) */
-    background: linear-gradient(90deg, #ffffff 30%, #e05b2b 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    display: inline-block; /* Mejora la renderización */
+    
+    footer {
+        border-top: 1px solid #eee;
+    }
 }
