@@ -186,15 +186,44 @@ footer {
 
 /* =================== RESPONSIVE =================== */
 @media (max-width: 900px) {
+
+    /* 1. SECCIONES: Reducir padding vertical general en móvil/tablet */
+    .section {
+        padding: 60px 5%; /* Menos espacio vertical, menos margen lateral */
+    }
+    
+    /* 2. HERO: Ajustes de apilamiento, centrado y reducción de padding */
     .hero {
         flex-direction: column-reverse;
         text-align: center;
+        /* Reducimos el padding adaptativo para que no ocupe demasiado en pantallas pequeñas */
+        padding: 10vh 5%; 
     }
 
+    /* 3. HERO: Títulos más pequeños para mejor lectura en móvil */
+    .hero-content h1 {
+        font-size: 2.5rem; /* Reducido de 3.2rem */
+        margin-top: 20px;
+    }
+    
+    /* 4. HERO: Centrar los botones y permitir que se apilen */
+    .hero-buttons {
+        display: flex; 
+        justify-content: center; 
+        flex-wrap: wrap; 
+    }
+
+    /* Ajuste para el espaciado entre botones en móvil */
+    .btn {
+        margin-right: 10px;
+        margin-bottom: 15px; /* Añade espacio si los botones se apilan */
+    }
+    
     .hero-image img {
         width: 260px;
     }
 
+    /* 5. CATÁLOGO: Ajustes de apilamiento */
     .catalogo {
         flex-direction: column;
         text-align: center;
@@ -203,4 +232,38 @@ footer {
     .catalogo-image img {
         width: 300px;
     }
+    
+    /* 6. TITULARES GENERALES: Reducir tamaño de subtítulos */
+    .features h2, 
+    .screenshots h2, 
+    .community-highlight h2 {
+        font-size: 1.8rem; 
+    }
+    
+    /* 7. STATS: Asegurar que la lista de stats se centre */
+    .catalogo-stats {
+        padding-left: 0; 
+        text-align: center;
+    }
+}
+
+/* =================== HOVER EFFECTS =================== */
+
+/* Animación de entrada suave para todos los botones */
+.btn,
+.btn-outline {
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto Hover para el botón principal (Descargar App) */
+.btn:hover {
+    background: #b84a22; /* Un tono un poco más oscuro */
+    transform: translateY(-1px); /* Sutil levantamiento */
+}
+
+/* Efecto Hover para el botón de contorno (Ver características) */
+.btn-outline:hover {
+    background: #e05b2b; /* Rellenar el fondo con el color principal */
+    color: #fff; /* Cambiar el color del texto a blanco */
+    box-shadow: 0 4px 10px rgba(224, 91, 43, 0.4); /* Añadir una sombra sutil */
 }
